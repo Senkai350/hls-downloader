@@ -49,7 +49,7 @@ export abstract class ChunksDownloader {
         const question = segmentUrl.indexOf("?");
         let filename = question > 0 ? segmentUrl.substr(0, question) : segmentUrl;
         const slash = filename.lastIndexOf("/");
-        filename = filename.substr(slash + 1);
+        filename = filename.substr(slash + 1).replace(':', '')
 
         // Download file
         await this.downloadWithRetries(segmentUrl, path.join(this.segmentDirectory, filename), this.maxRetries);
